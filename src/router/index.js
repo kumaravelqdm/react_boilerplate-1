@@ -1,12 +1,18 @@
+/**
+ * @author Kameshwaran Murugan
+ * @email kamesh@qdmplatforms.com
+ * @create date 2020-11-27
+ * @modify date 2020-12-01
+ * @desc Different routes and their corresponding component are defined here.
+ */
+
 import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  // Redirect,
 } from "react-router-dom";
 import { Routes } from "./routes";
-// import PrivateRoute from "./privateRouter";
 
 import {
   Login,
@@ -23,6 +29,7 @@ const RouterApp = (props) => {
         {/* Login path */}
         <Route path={Routes.login} component={Login} />
 
+        {/* For unknow/non-defined path */}
         <Route path="*" component={NotFound} />
       </Switch>
     </Router>

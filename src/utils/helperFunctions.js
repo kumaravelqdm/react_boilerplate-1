@@ -1,17 +1,41 @@
+/**
+ * @author Kameshwaran Murugan
+ * @email kamesh@qdmplatforms.com
+ * @create date 2020-11-27
+ * @modify date 2020-12-01
+ * @desc Collection of all helper functions.
+ */
+
+/**
+ * Object with role as key and value, which is used for 
+ * comparison of role in different place.
+ */
 export const UserRoles = {
     role: "role"
 };
 
-export const UserRolesName = {
+/**
+ * Object which has the proper name of all the role
+ * used in the application.
+ */
+export let UserRolesName = {
     "role": "Role"
 };
 
-export const Themes = {
+/**
+ * Object which has the different themes used in 
+ * the application.
+ */
+export let Themes = {
     default: "default",
     dark: "dark",
 };
 
-export const AlertProps = {
+/**
+ * Object which has the different props for the Alert Component (/src/component/alert) 
+ * which is used via AlertContext (/src/contexts) and provided at /src/App.alert.js.
+ */
+export let AlertProps = {
     vertical: {
         top: "top",
         bottom: "bottom",
@@ -29,6 +53,10 @@ export const AlertProps = {
     },
 };
 
+/**
+ * Object which has the different props for the Drawer Component (/src/App.drawer.js) 
+ * which is used via DrawerContext (/src/contexts) and provided at /src/App.drawer.js.
+ */
 export const DrawerProps = {
     direction: {
         top: "top",
@@ -43,11 +71,19 @@ export const DrawerProps = {
     },
 };
 
-export const LocalStorageKeys = {
+/**
+ * Object has the key and value pair of all the keys which 
+ * are used to store some values in the local storage.
+ */
+export let LocalStorageKeys = {
     authToken: "auth_token",
 };
 
-export const NetWorkCallMethods = {
+/**
+ * Object has the key and value pair of all the HTTP method
+ * used for an network call.
+ */
+export let NetWorkCallMethods = {
     get: "GET",
     post: "POST",
     put: "PUT",
@@ -55,7 +91,12 @@ export const NetWorkCallMethods = {
     update: "UPDATE",
 };
 
-export const ConvertToReactSelect = (data, valueKey, labelKey) => {
+/**
+ * The below function convert the normal array of object to 
+ * {label: "",value:1} pair which is suitable for React Select
+ * component.
+ */
+export let ConvertToReactSelect = (data, valueKey, labelKey) => {
     if (!data || !data?.length) {
         return [];
     }
@@ -69,7 +110,10 @@ export const ConvertToReactSelect = (data, valueKey, labelKey) => {
     });
 };
 
-export const ToBase64 = (file) =>
+/**
+ * The below function convert the uploaded file to base64 file.
+ */
+export let ToBase64 = (file) =>
     new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
@@ -77,26 +121,35 @@ export const ToBase64 = (file) =>
         reader.onerror = (error) => reject(error);
     });
 
-export const CapitalizeString = (string) => {
+/**
+ * The below function capitalize the given string.
+ */
+export let CapitalizeString = (string) => {
     if (!string) {
         return string;
     }
     return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
-export const ConvertHexToRGBA = (hex, opacity) => {
+/**
+ * The below function convert the HEX code to RGBA
+ */
+export let ConvertHexToRGBA = (hex, opacity) => {
     if (hex) {
-        const tempHex = hex.replace("#", "");
-        const r = parseInt(tempHex.substring(0, 2), 16);
-        const g = parseInt(tempHex.substring(2, 4), 16);
-        const b = parseInt(tempHex.substring(4, 6), 16);
+        let tempHex = hex.replace("#", "");
+        let r = parseInt(tempHex.substring(0, 2), 16);
+        let g = parseInt(tempHex.substring(2, 4), 16);
+        let b = parseInt(tempHex.substring(4, 6), 16);
 
         return `rgba(${r},${g},${b},${opacity / 100})`;
     }
     return null;
 };
 
-export const OpenFullScreen = (id) => {
+/**
+ * The below function will open an document node in a full screen. 
+ */
+export let OpenFullScreen = (id) => {
     let elem = document.getElementById(id);
     if (elem.requestFullscreen) {
         elem.requestFullscreen();
@@ -112,7 +165,11 @@ export const OpenFullScreen = (id) => {
     }
 };
 
-export const CloseFullScreen = (id) => {
+/**
+ * The below function will close the full screen of an document
+ * node.
+ */
+export let CloseFullScreen = (id) => {
     if (document.exitFullscreen) {
         document.exitFullscreen();
     } else if (document.webkitExitFullscreen) {
@@ -124,35 +181,10 @@ export const CloseFullScreen = (id) => {
     }
 };
 
-export const TimeCustomConverter = (incomingDate) => {
-    let date = new Date(incomingDate);
-    let hours = date.getHours() % 12 === 0 ? 12 : date.getHours() % 12;
-    let minutes = date.getMinutes() % 12;
-
-    let AmOrPm = date.getHours() >= 12 ? "Pm" : "Am";
-
-    return (
-        ("0" + hours).slice(-2) + ":" + ("0" + minutes).slice(-2) + " " + AmOrPm
-    );
-};
-
-export const FormatString = (exceptionData) => {
-    let dayString = exceptionData.days.join(', ')
-    let index = dayString.lastIndexOf(",")
-    let replaceChar = " &"
-    let firstPart = dayString.substr(0, index);
-    let lastPart = dayString.substr(index + 1);
-    return firstPart + replaceChar + lastPart;
-}
-
-export const BmiCalculation = (height = 1, weight = 1) => {
-    weight = parseFloat(weight);
-    height = parseFloat(height);
-    let bmi = Math.round((weight / Math.pow(height, 2)) * 10000);
-    return bmi;
-};
-
-export const ScrollToTop = () => {
+/**
+ * The below function will scroll the page to the Top.
+ */
+export let ScrollToTop = () => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }

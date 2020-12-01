@@ -1,3 +1,11 @@
+/**
+ * @author Kameshwaran Murugan
+ * @email kamesh@qdmplatforms.com
+ * @create date 2020-11-27
+ * @modify date 2020-12-01
+ * @desc Providing the DialogContext from /src/context which is used in /src/App.js
+ */
+
 import React from "react";
 import { DialogContext } from "./contexts";
 import Dialog from "@material-ui/core/Dialog";

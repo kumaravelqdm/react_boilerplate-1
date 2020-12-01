@@ -1,9 +1,19 @@
-export const ValidateEmail = (email) => {
-  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+/**
+ * @author Kameshwaran Murugan
+ * @email kamesh@qdmplatforms.com
+ * @create date 2020-11-27
+ * @modify date 2020-12-01
+ * @desc Collection of all validation function
+ */
+
+//Function to validate email
+export let ValidateEmail = (email) => {
+  let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return Boolean(re.test(email));
 };
 
-export const IsNumberKey = (e, isNumber) => {
+//Function to check wheather the 'e' is number key event or not based on 'isNumber' key 
+export let IsNumberKey = (e, isNumber) => {
   if (isNumber) {
     if (e.target.value.length <= 10) {
       if (!(e.which >= 48 && e.which <= 57)) e.preventDefault();
@@ -11,7 +21,8 @@ export const IsNumberKey = (e, isNumber) => {
   }
 };
 
-export const IsNumberKeyDown = (e, isNumber) => {
+//Function to check wheather the 'e' is number key event and is down or not.
+export let IsNumberKeyDown = (e, isNumber) => {
   if (isNumber) {
     if (e.target.value.length <= 10) {
       if (e.which === 38 || e.which === 40) e.preventDefault();
@@ -19,7 +30,8 @@ export const IsNumberKeyDown = (e, isNumber) => {
   }
 };
 
-export const IsTextKeyDown = (event, isOnlyText) => {
+//Function to check wheather the 'e' is text key event or not.
+export let IsTextKeyDown = (event, isOnlyText) => {
   var inputValue = event.which;
   
   if(isOnlyText){

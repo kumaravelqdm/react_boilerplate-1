@@ -1,3 +1,11 @@
+/**
+ * @author Kameshwaran Murugan
+ * @email kamesh@qdmplatforms.com
+ * @create date 2020-11-27
+ * @modify date 2020-12-01
+ * @desc Providing the AuthContext from /src/context which is used in the /src/App.js.
+ */
+
 import React from "react";
 import { LinearProgress } from "@material-ui/core";
 import { NetworkCall } from "./networkcall";

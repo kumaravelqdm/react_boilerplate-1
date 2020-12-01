@@ -1,17 +1,38 @@
+/**
+ * @author Kameshwaran Murugan
+ * @email kamesh@qdmplatforms.com
+ * @create date 2020-11-27 
+ * @modify date 2020-12-01
+ * @desc Collection of all the Context used in the application
+ */
+
 import React from "react";
 import { Themes, AlertProps, DrawerProps } from "../utils";
 
-export const ThemeContext = React.createContext({
+/**
+ * ThemeContext store the current theme of the app,which is provided 
+ * at the /src/App.js using the /src/App.theme.js. 
+ */
+export let ThemeContext = React.createContext({
   name: Themes.default,
   setTheme: () => null,
 });
 
-export const AuthContext = React.createContext({
+/**
+ * AuthContext store some basic detail of the user when the user logged
+ * into the application, which is provided at the /src/App.js using 
+ * the /src/App.auth.js.
+ */
+export let AuthContext = React.createContext({
   user: {},
   setAuth: () => null,
 });
 
-export const AlertContext = React.createContext({
+/**
+ * AlertContext store the props which are neccessary to show the Alert component, 
+ * which is provided at the /src/App.js using the /src/App.alert.js.
+ */
+export let AlertContext = React.createContext({
   open: false,
   severity: AlertProps.severity.success,
   msg: "",
@@ -21,7 +42,11 @@ export const AlertContext = React.createContext({
   setSnack: () => null,
 });
 
-export const DialogContext = React.createContext({
+/**
+ * DialogContext store the props of a Dialog, which is provided at the /src/App.js using 
+ * the /src/App.dialog.js
+ */
+export let DialogContext = React.createContext({
   open: true,
   title: "",
   body: "",
@@ -31,12 +56,20 @@ export const DialogContext = React.createContext({
   setDialog: () => null,
 });
 
-export const BackdropContext = React.createContext({
+/**
+ * BackdropContext store the props of the Backdrop Component, which is provided at the /src/App.js using 
+ * the /src/App.backdrop.js
+ */
+export let BackdropContext = React.createContext({
   open: true,
   message: "",
   setBackDrop: () => null
 })
 
+/**
+ * DrawerContext store the props of the Drawer component, which is provided at the /src/App.js using 
+ * the /src/App.drawer.js
+ */
 export const DrawerContext = React.createContext({
   open: true,
   direction: DrawerProps.direction.right,

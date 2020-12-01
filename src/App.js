@@ -1,9 +1,16 @@
+/**
+ * @author Kameshwaran Murugan
+ * @email kamesh@qdmplatforms.com
+ * @create date 2020-11-27
+ * @modify date 2020-12-01
+ * @desc The first component of the application, all the required context and routes are used here 
+ * to setup the application.
+ */
+
 import React from "react";
 
-//HOC's
 import AppAuth from "./App.auth";
 import AppTheme from "./App.theme";
-// import AppGQLClient from "./App.gqlclient";
 import AppAlert from "./App.alert";
 import AppErrorBoundary from "./App.errorBoundry";
 import RouterApp from "./router";

@@ -1,3 +1,13 @@
+/**
+ * @author Kameshwaran Murugan
+ * @email kamesh@qdmplatforms.com
+ * @create date 2020-11-27
+ * @modify date 2020-12-01
+ * @desc The private route check wheather the user is logged in or not and also check
+ * wheather the request route from the user is accessible to them or not using the Access(role,path)
+ * function then allow to the particular route or else it will redirect to login page.
+ */
+
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
 import { Routes } from "./routes";
