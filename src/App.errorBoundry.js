@@ -1,8 +1,8 @@
 /**
- * @author Kameshwaran Murugan
- * @email kamesh@qdmplatforms.com
- * @create date 2020-11-27
- * @modify date 2020-12-01
+ * @author AUTHOR_NAME
+ * @email AUTHOR_EMAIL
+ * @create date 
+ * @modify date 
  * @desc If any error/crash happend in the app, those are cached here and 500 page is shown, if 
  * need the error will be send to server.
  */

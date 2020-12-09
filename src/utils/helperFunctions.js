@@ -1,8 +1,8 @@
 /**
- * @author Kameshwaran Murugan
- * @email kamesh@qdmplatforms.com
- * @create date 2020-11-27
- * @modify date 2020-12-01
+ * @author AUTHOR_NAME
+ * @email AUTHOR_EMAIL
+ * @create date 
+ * @modify date 
  * @desc Collection of all helper functions.
  */
 
