@@ -1,6 +1,6 @@
 {
-  "short_name": "QDM",
-  "name": "Full_Name",
+  "short_name": "Meta_Short_Name",
+  "name": "Meta_Name",
   "icons": [
     {
       "src": "favicon.ico",

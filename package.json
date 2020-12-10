@@ -1,6 +1,6 @@
 {
-  "name": "qdm-ide",
-  "version": "0.0.1",
+  "name": "Meta_Name",
+  "version": "Meta_Version",
   "private": true,
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
