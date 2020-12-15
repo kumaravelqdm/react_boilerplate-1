@@ -6,5 +6,4 @@
  * @desc Exporting all the screens from /src/screens
  */
 
-export { default as Login } from "./login";
 export { default as NotFound } from "./notFound";

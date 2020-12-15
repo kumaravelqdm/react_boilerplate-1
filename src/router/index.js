@@ -24,10 +24,7 @@ const RouterApp = (props) => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={Login} />
-
-        {/* Login path */}
-        <Route path={Routes.login} component={Login} />
+        <Route exact path="/" component={<></>} />
 
         {/* For unknow/non-defined path */}
         <Route path="*" component={NotFound} />
