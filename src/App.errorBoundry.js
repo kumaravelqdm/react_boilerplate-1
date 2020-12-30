@@ -8,7 +8,7 @@
  */
 
 import React from "react";
-import { Grid, Typography, Link, withStyles } from "@material-ui/core";
+import { H6 } from "qdm-component-library";
 
 const styles = (theme) => ({
   root: {
@@ -39,32 +39,14 @@ class AppErrorBoundary extends React.Component {
     if (this.state.hasError) {
       // You can render any custom fallback UI
       return (
-        <Grid
-          container
-          classes={this.props.classes.root}
-          id="error_catcher_root"
-          className={this.props.classes.root}
-          justify="center"
-          alignItems="center"
+        <div          
         >
-          <Grid item id="error_catcher_item1">
-            <Typography id="error_catcher_typo1" variant="h1">
-              500
-            </Typography>
-
-            <Typography id="error_catcher_typo2" variant="h2">
-              Opps!!! Something went wrong!
-            </Typography>
-
-            <Link id="error_catcher_link" href="/">
-              Try again
-            </Link>
-          </Grid>
-        </Grid>
+          <H6>500 - Something went wrong</H6>
+        </div>
       );
     }
     return this.props.children;
   }
 }
 
-export default withStyles(styles)(AppErrorBoundary);
+export default AppErrorBoundary;

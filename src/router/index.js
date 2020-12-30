@@ -15,7 +15,6 @@ import {
 import { Routes } from "./routes";
 
 import {
-  Login,
   NotFound
 } from './../screens';
 
@@ -24,7 +23,7 @@ const RouterApp = (props) => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={<></>} />
+        <Route exact path="/" component={NotFound} />
 
         {/* For unknow/non-defined path */}
         <Route path="*" component={NotFound} />

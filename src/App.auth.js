@@ -7,7 +7,7 @@
  */
 
 import React from "react";
-import { LinearProgress } from "@material-ui/core";
+import { BorderLinearProgress } from "qdm-component-library";
 import { NetworkCall } from "./networkcall";
 
 class AppAuth extends React.Component {
@@ -33,7 +33,7 @@ class AppAuth extends React.Component {
     return (
       <>       
         {loading && (
-          <LinearProgress/>
+          <BorderLinearProgress/>
         )}
         {this.props.children}
       </>

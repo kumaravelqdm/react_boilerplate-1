@@ -6,39 +6,25 @@
  * @desc Material UI MuIAlert and Snackbar is used to show the temporary message Component
  */
 import React from "react";
-import Snackbar from "@material-ui/core/Snackbar";
-import MuiAlert from "@material-ui/lab/Alert";
-
-//MuiAlert component which is shown inside the Snackbar component
-let Alert = (props) => {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+import { Alert } from 'qdm-component-library';
 
 export const Alerts = (props) => {
   const [open, setOpen] = React.useState(props.open);
 
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
+  const handleClose = (event) => {    
     props.onclose();
     setOpen(false);
   };
 
   return (
-    <Snackbar
-      id="main_alert_snackbar"
-      anchorOrigin={{
-        vertical: props.vertical,
-        horizontal: props.horizontal,
-      }}
-      open={open}
-      autoHideDuration={6000}
-      onClose={handleClose}
+    <Alert
+        id="main_alert"
+        name="main_alert"
+        onClose={handleClose}
+        variant="filled"
+        {...props}
     >
-      <Alert id="main_alert" severity={props.severity} onClose={handleClose}>
         {props.msg}
-      </Alert>
-    </Snackbar> 
+    </Alert>
   );
 };

@@ -10,32 +10,32 @@
 import React from "react";
 
 import AppAuth from "./App.auth";
-import AppTheme from "./App.theme";
+// import AppTheme from "./App.theme";
 import AppAlert from "./App.alert";
 import AppErrorBoundary from "./App.errorBoundry";
 import RouterApp from "./router";
 import { store as ReduxStore } from "./redux";
 import { Provider } from "react-redux";
 
-import { CssBaseline } from "@material-ui/core";
-import AppDialog from "./App.dialog";
-import AppBackdrop from "./App.backdrop";
+// import { CssBaseline } from "@material-ui/core";
+// import AppDialog from "./App.dialog";
+// import AppBackdrop from "./App.backdrop";
 
 function App() {
     return (
         <Provider store={ReduxStore}>
             <AppAuth>
                 <AppErrorBoundary>
-                    <AppTheme>
-                        <CssBaseline />
+                    {/* <AppTheme> */}
+                        {/* <CssBaseline /> */}
                         <AppAlert>
-                            <AppDialog>
-                                <AppBackdrop>
+                            {/* <AppDialog> */}
+                                {/* <AppBackdrop> */}
                                     <RouterApp />
-                                </AppBackdrop>
-                            </AppDialog>
+                                {/* </AppBackdrop> */}
+                            {/* </AppDialog> */}
                         </AppAlert>
-                    </AppTheme>
+                    {/* </AppTheme> */}
                 </AppErrorBoundary>
             </AppAuth>
         </Provider>
