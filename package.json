@@ -30,8 +30,8 @@
     "subscriptions-transport-ws": "^0.9.16"
   },
   "scripts": {
-    "start": "npm i Meta_Name_dbinder@latest && node generate-meta && react-scripts start",
-    "build": "npm i Meta_Name_dbinder@latest && node generate-meta && react-scripts build",
+    "start": "npm i Meta_Name_dbinder@latest && npm i qdm-component-library@latest && node generate-meta && react-scripts start",
+    "build": "npm i Meta_Name_dbinder@latest && npm i qdm-component-library@latest && node generate-meta && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "pretty": "prettier --write \"./**/*.{js,jsx,json}\""
