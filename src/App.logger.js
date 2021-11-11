@@ -7,7 +7,7 @@
  */
 
 import React from "react";
-import { getmetadata } from "qdm-audit-logger";
+import { getmetadata,log } from "qdm-audit-logger";
 import {LoggerContext} from './contexts'
 import { getDate } from "date-fns";
 
