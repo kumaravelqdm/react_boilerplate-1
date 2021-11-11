@@ -80,5 +80,6 @@ export const DrawerContext = React.createContext({
 
 export const LoggerContext = React.createContext({
   getData : () => null,
-  data : ''
+  data : {},
+  setLogData : () => null
 })

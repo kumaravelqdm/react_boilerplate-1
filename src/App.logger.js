@@ -30,6 +30,10 @@ class AppLogger extends React.Component {
         })
     }
 
+    setLog = async (logType,message) =>{
+        await log(logType,message,this.state.data)
+    }
+
     render() {
 
         return (
@@ -37,6 +41,7 @@ class AppLogger extends React.Component {
              value={{
                 ...this.state,
                 getData:this.getData,
+                setLogData:this.setLog
              }}
             >
                 {this.props.children}
