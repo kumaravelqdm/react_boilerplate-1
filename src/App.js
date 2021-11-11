@@ -14,6 +14,7 @@ import AppAuth from "./App.auth";
 import AppAlert from "./App.alert";
 import AppErrorBoundary from "./App.errorBoundry";
 import RouterApp from "./router";
+import AppLogger from "./App.logger";
 import { store as ReduxStore } from "./redux";
 import { Provider } from "react-redux";
 
@@ -27,14 +28,16 @@ function App() {
             <AppAuth>
                 <AppErrorBoundary>
                     {/* <AppTheme> */}
-                        {/* <CssBaseline /> */}
-                        <AppAlert>
-                            {/* <AppDialog> */}
-                                {/* <AppBackdrop> */}
-                                    <RouterApp />
-                                {/* </AppBackdrop> */}
-                            {/* </AppDialog> */}
-                        </AppAlert>
+                    {/* <CssBaseline /> */}
+                    <AppAlert>
+                        {/* <AppDialog> */}
+                        {/* <AppBackdrop> */}
+                        <AppLogger>
+                            <RouterApp />
+                        </AppLogger>
+                        {/* </AppBackdrop> */}
+                        {/* </AppDialog> */}
+                    </AppAlert>
                     {/* </AppTheme> */}
                 </AppErrorBoundary>
             </AppAuth>

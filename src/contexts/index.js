@@ -77,3 +77,8 @@ export const DrawerContext = React.createContext({
   onClose: () => null,
   setDrawer: ()=> null
 })
+
+export const LoggerContext = React.createContext({
+  getData : () => null,
+  data : ''
+})

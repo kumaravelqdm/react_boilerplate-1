@@ -22,6 +22,7 @@
     "i18next-locize-backend": "^4.0.12",
     "moment": "^2.27.0",
     "qdm-component-library": "^1.13.0",
+    "qdm-audit-logger": "^1.1.2",
     "react": "^16.13.1",
     "react-beautiful-dnd": "^13.0.0",
     "react-dom": "^16.13.1",
