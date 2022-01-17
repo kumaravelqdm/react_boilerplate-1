@@ -35,7 +35,7 @@ const Permissions = {
         )
         return screen_level_permissions?.data ?? []
     },
-    casbianRouteImplementation: () => {
+    casbianRouteImplementation: (allPermissionList) => {
         let pageJson = allPermissionList?.repo_mapping;
         sessionStorage.setItem('permissionData', btoa(JSON.stringify(pageJson)))
         let Arr = [];
