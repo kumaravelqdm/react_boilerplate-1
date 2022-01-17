@@ -34,7 +34,7 @@
     "react-select": "^3.1.0",
     "react-select-async-paginate": "^0.4.0",
     "subscriptions-transport-ws": "^0.9.16",
-    "idmpanel-pkg":"^0.2.5"
+    "idmpanel-pkg":"^0.3.0"
   },
   "scripts": {
     "start": "npm i Meta_Name_dbinder@latest && npm i qdm-component-library@latest && node generate-meta && react-scripts start",
