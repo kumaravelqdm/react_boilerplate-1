@@ -16,7 +16,7 @@ const Permissions = {
         Accept: "application/json",
       }
     );
-    return project_level_permissions?.data?.result[0] ?? false;
+    return project_level_permissions?.data?.result?.[0] ?? false;
   },
   get_user_role_permision: async () => {
     let screen_level_permissions = await NetworkCall(
@@ -26,35 +26,34 @@ const Permissions = {
         db_name: sessionStorage.dbname,
         entity: "IDM_PermissionRoleMapping",
         filter: `IDM_PermissionRoleMapping.role_id=='${sessionStorage.role_id}'`,
-        return_fields: "{IDM_PermissionRoleMapping}",
+        return_fields: "IDM_PermissionRoleMapping",
       }),
       {
         "Content-Type": "application/json",
         Accept: "application/json",
       }
     );
-    debugger
-    return screen_level_permissions?.data ?? [];
+    return screen_level_permissions?.data?.result?.[0] ?? [];
   },
-  casbianRouteImplementation: (allPermissionList) => {
+  casbianRouteImplementation : async (allPermissionList) => {
     let pageJson = allPermissionList?.repo_mapping;
-    sessionStorage.setItem("permissionData", btoa(JSON.stringify(pageJson)));
+    sessionStorage.setItem('permissionData',btoa(JSON.stringify(pageJson)))
     let Arr = [];
-    let Pages = Object.keys(pageJson)?.filter(
-      (v) =>
-        v && (pageJson[v]?.permission.read || pageJson[v]?.permission.write)
-    );
+    let Pages =
+      Object.keys(pageJson)?.filter(
+        (v) => v && (pageJson[v]?.permission.read || pageJson[v]?.permission.write)
+      );
     let data = Pages?.filter((v) => {
       Arr.push(pageJson[v]?.routes ?? "");
     });
     const permission = {
-      admin: {
+      "admin": {
         access: Arr,
       },
     };
-    localStorage.setItem("role_name", "admin");
-    localStorage.setItem("role_data", btoa(JSON.stringify(permission)));
-  },
+    sessionStorage.setItem("role_name", "admin");
+    sessionStorage.setItem("role_data", btoa(JSON.stringify(permission)));
+  }
 };
 
 export default Permissions;

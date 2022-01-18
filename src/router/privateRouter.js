@@ -14,48 +14,51 @@
  import { useDispatch } from "react-redux";
  
  const PrivateRoute = (routeprops) => {
- 
    const dispatch = useDispatch();
-   
+ 
    let { component: Component, path, isIdmEnabled, ...rest } = routeprops;
  
    const checkAccess = () => {
      try {
-       if(isIdmEnabled){
-        let data = localStorage.getItem('role_data');
-        const accessObj = JSON.parse(atob(data))?.[localStorage.getItem('role_name')]?.access || [];
-        if (accessObj?.length === 0) {
-          throw new Error("Invalid Permissions")
-        }
-        return localStorage.getItem('role_name') && accessObj.indexOf(path) > -1 && sessionStorage.token;
-       }else{
-        return localStorage.getItem('auth_token')
+       if (isIdmEnabled) {
+         let data = sessionStorage.getItem("role_data");
+         const accessObj =
+           JSON.parse(atob(data))?.[sessionStorage.getItem("role_name")]?.access ||
+           [];
+         if (accessObj?.length === 0) {
+           throw new Error("Invalid Permissions");
+         }
+         return (
+           sessionStorage.getItem("role_name") &&
+           accessObj.indexOf(path) > -1 &&
+           sessionStorage.email
+         );
+       } else {
+         return sessionStorage.getItem("email");
        }
      } catch (err) {
-       sessionStorage.removeItem("token")
-       sessionStorage.removeItem("role_name")
-       sessionStorage.removeItem("role_data")
-       sessionStorage.removeItem("remove_item")
+       sessionStorage.removeItem("token");
+       sessionStorage.removeItem("role_name");
+       sessionStorage.removeItem("role_data");
+       sessionStorage.removeItem("remove_item");
        return false;
      }
    };
  
    return (
-      <Route
-        {...rest} render={(props) => checkAccess() ? (
-          <Component {...props} />
-        ) : (
-          <Redirect to={"/"} />
-        )
-        }
-      />
-      // <Route
-      //   {...rest} render={(props) =>  (
-      //     <Component {...props} />
-      //   ) 
-      //   }
-      // />
-    );
+     <Route
+       {...rest}
+       render={(props) =>
+         checkAccess() ? <Component {...props} /> : <Redirect to={"/"} />
+       }
+     />
+     // <Route
+     //   {...rest} render={(props) =>  (
+     //     <Component {...props} />
+     //   )
+     //   }
+     // />
+   );
  };
  
  export default PrivateRoute;
