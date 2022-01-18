@@ -9,4 +9,4 @@
 export * from './helperFunctions';
 export * from './messages';
 export * from './validations';
-export * from './permissions';
+export {default as Permissions} from "./permissions";
