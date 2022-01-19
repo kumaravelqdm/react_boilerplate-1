@@ -1,4 +1,6 @@
 import { NetworkCall } from "../networkcall";
+import Config from "../config";
+
 const casbinjs = require('casbin.js');
 
 
@@ -6,11 +8,12 @@ const Permissions = {
   casbinList: {
   },
   get_user_permission_data: async () => {
+    
     let project_level_permissions = await NetworkCall(
       "https://arangodbservice.dev.ainqaplatform.in/api/read_documents",
       "POST",
       JSON.stringify({
-        db_name: sessionStorage.dbname,
+        db_name: Config.dbName,
         entity: "IDM_Person",
         filter: `IDM_Person.email=='${sessionStorage.email}'`,
         return_fields: "IDM_Person",
@@ -27,7 +30,7 @@ const Permissions = {
       "https://arangodbservice.dev.ainqaplatform.in/api/read_documents",
       "POST",
       JSON.stringify({
-        db_name: sessionStorage.dbname,
+        db_name: Config.dbName,
         entity: "IDM_PermissionRoleMapping",
         filter: `IDM_PermissionRoleMapping.role_id=='${sessionStorage.role_id}'`,
         return_fields: "IDM_PermissionRoleMapping",
@@ -55,7 +58,7 @@ const Permissions = {
       "https://arangodbservice.dev.ainqaplatform.in/api/read_documents",
       "POST",
       JSON.stringify({
-        db_name: sessionStorage.dbname,
+        db_name: config.dbname,
         entity: "IDM_Repository",
         return_fields: "IDM_Repository",
       }),
