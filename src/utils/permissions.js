@@ -8,12 +8,14 @@ const Permissions = {
   casbinList: {
   },
   get_user_permission_data: async () => {
-    
+    sessionStorage.setItem("entity_metadata_id",Config.metaDataId);
+    sessionStorage.setItem("dbname",Config.dbname)
+    sessionStorage.dbName
     let project_level_permissions = await NetworkCall(
       "https://arangodbservice.dev.ainqaplatform.in/api/read_documents",
       "POST",
       JSON.stringify({
-        db_name: Config.dbName,
+        db_name: Config.dbname,
         entity: "IDM_Person",
         filter: `IDM_Person.email=='${sessionStorage.email}'`,
         return_fields: "IDM_Person",
@@ -30,7 +32,7 @@ const Permissions = {
       "https://arangodbservice.dev.ainqaplatform.in/api/read_documents",
       "POST",
       JSON.stringify({
-        db_name: Config.dbName,
+        db_name: Config.dbname,
         entity: "IDM_PermissionRoleMapping",
         filter: `IDM_PermissionRoleMapping.role_id=='${sessionStorage.role_id}'`,
         return_fields: "IDM_PermissionRoleMapping",
@@ -58,7 +60,7 @@ const Permissions = {
       "https://arangodbservice.dev.ainqaplatform.in/api/read_documents",
       "POST",
       JSON.stringify({
-        db_name: config.dbname,
+        db_name: Config.dbname,
         entity: "IDM_Repository",
         return_fields: "IDM_Repository",
       }),

@@ -17,6 +17,6 @@ Config.graphql = process.env.REACT_APP_GQL_ENDPOINT;
 Config.socket = process.env.REACT_APP_SOCKET;
 Config.metaDataId = process.env.REACT_APP_METADATAID;
 Config.projecName = process.env.REACT_APP_APP_NAME;
-Config.dbName = process.env.REACT_APP_QDM_DATABASENAME;
+Config.dbname = process.env.REACT_APP_QDM_DATABASENAME;
 
 export default Config;
