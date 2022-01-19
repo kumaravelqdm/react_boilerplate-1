@@ -20,11 +20,10 @@
  
    const checkAccess = () => {
      try {
-       if (isIdmEnabled) {
          let data = sessionStorage.getItem("role_data");
          const accessObj =
-           JSON.parse(atob(data))?.[sessionStorage.getItem("role_name")]?.access ||
-           [];
+           JSON.parse(atob(data))?.[sessionStorage.getItem("role_name")]
+             ?.access || [];
          if (accessObj?.length === 0) {
            throw new Error("Invalid Permissions");
          }
@@ -33,9 +32,6 @@
            accessObj.indexOf(path) > -1 &&
            sessionStorage.email
          );
-       } else {
-         return sessionStorage.getItem("email");
-       }
      } catch (err) {
        sessionStorage.removeItem("token");
        sessionStorage.removeItem("role_name");
