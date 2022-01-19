@@ -7,7 +7,7 @@
  * via Config variable.
  */
 
-import dotenv from "dotenv";
+import dotenv, { config } from "dotenv";
 dotenv.config();
 
 let Config = {};
@@ -15,5 +15,8 @@ let Config = {};
 Config.api_url = process.env.REACT_APP_API_ENDPOINT;
 Config.graphql = process.env.REACT_APP_GQL_ENDPOINT;
 Config.socket = process.env.REACT_APP_SOCKET;
+Config.metaDataId = process.env.REACT_APP_METADATAID;
+Config.projecName = process.env.REACT_APP_APP_NAME;
+Config.dbName = process.env.REACT_APP_QDM_DATABASENAME;
 
 export default Config;
