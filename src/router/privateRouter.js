@@ -20,6 +20,7 @@
  
    const checkAccess = () => {
      try {
+       if(isIdmEnabled){
          let data = sessionStorage.getItem("role_data");
          const accessObj =
            JSON.parse(atob(data))?.[sessionStorage.getItem("role_name")]
@@ -32,6 +33,9 @@
            accessObj.indexOf(path) > -1 &&
            sessionStorage.email
          );
+      }else{
+        return sessionStorage.authToken;
+      }
      } catch (err) {
        sessionStorage.removeItem("token");
        sessionStorage.removeItem("role_name");
