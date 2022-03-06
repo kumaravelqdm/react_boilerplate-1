@@ -102,66 +102,73 @@ const Permissions = {
     sessionStorage.setItem("role_data", btoa(JSON.stringify(permission)));
   },
   checkWithCasbin: async (funName = []) => {
-    debugger
-    let permission = Permissions.permissionJson(funName);
-    if (permission) {
-      const authorizer = new casbinjs.Authorizer("manual", permission);
-      authorizer.setPermission(permission);
-      let data = await Promise.all(
-        funName.map(async (sname) => {
-          return await new Promise(async (resolve, reject) => {
-            let casbinList = JSON.parse(atob(sessionStorage.casbinList));
-            let list = casbinList[sname];
-            let readList = await Promise.all(
-              list.read.map(async (val) => {
-                return await new Promise(async (resolve, reject) => {
-                  let isread = await authorizer.can("read", val);
-                  resolve({ [val]: isread });
-                });
-              })
-            );
-            let readData = [];
-            readList.map((val) => {
-              let key = Object.keys(val)[0];
-              if (val[key]) {
-                readData.push(key);
-              }
-            });
 
-            let writeList = await Promise.all(
-              list.write.map(async (val) => {
-                return await new Promise(async (resolve, reject) => {
-                  let isread = await authorizer.can("write", val);
-                  resolve({ [val]: isread });
-                });
-              })
-            );
-            let writeData = [];
-            writeList.map((val) => {
-              let key = Object.keys(val)[0];
-              if (val[key]) {
-                writeData.push(key);
-              }
+    try {
+      let permission = Permissions.permissionJson(funName);
+      if (permission) {
+        const authorizer = new casbinjs.Authorizer("manual", permission);
+        authorizer.setPermission(permission);
+        let data = await Promise.all(
+          funName.map(async (sname) => {
+            return await new Promise(async (resolve, reject) => {
+              let casbinList = JSON.parse(atob(sessionStorage.casbinList));
+              let list = casbinList[sname];
+              let readList = await Promise.all(
+                list.read.map(async (val) => {
+                  return await new Promise(async (resolve, reject) => {
+                    let isread = await authorizer.can("read", val);
+                    resolve({ [val]: isread });
+                  });
+                })
+              );
+              let readData = [];
+              readList.map((val) => {
+                let key = Object.keys(val)[0];
+                if (val[key]) {
+                  readData.push(key);
+                }
+              });
+
+              let writeList = await Promise.all(
+                list.write.map(async (val) => {
+                  return await new Promise(async (resolve, reject) => {
+                    let isread = await authorizer.can("write", val);
+                    resolve({ [val]: isread });
+                  });
+                })
+              );
+              let writeData = [];
+              writeList.map((val) => {
+                let key = Object.keys(val)[0];
+                if (val[key]) {
+                  writeData.push(key);
+                }
+              });
+              resolve({
+                read: readData,
+                write: writeData,
+              });
             });
-            resolve({
-              read: readData,
-              write: writeData,
-            });
-          });
-        })
-      );
-      let read = [],
-        write = [];
-      data.map((val) => {
-        read = [...read, ...val.read];
-        write = [...write, ...val.write];
-      });
+          })
+        );
+        let read = [],
+          write = [];
+        data.map((val) => {
+          read = [...read, ...val.read];
+          write = [...write, ...val.write];
+        });
+        return {
+          read: read,
+          write: write,
+        };
+      } else {
+        return {
+          read: [],
+          write: []
+        }
+      }
+    } catch (e) {
       return {
-        read: read,
-        write: write,
-      };
-    }else{
-      return{
         read: [],
         write: []
       }
@@ -169,39 +176,46 @@ const Permissions = {
   },
   permissionJson: (funName = []) => {
     // localStorage.setItem("permissionData", btoa(JSON.stringify(json)));
-    let pj = sessionStorage.getItem("permissionData");
-    pj = JSON.parse(atob(pj));
-    if (!pj?.[funName[0]]?.component) return false;
-    let returnJson = {
-      read: [],
-      write: [],
-    };
-    funName.map((sname) => {
-      let data = pj[sname];
-      if (!data) {
-        return false;
-      }
-      Object.keys(data?.component).map((val) => {
-        if (data?.component[val].permission.read) {
-          returnJson.read.push(val);
+    try {
+      let pj = sessionStorage.getItem("permissionData");
+      pj = JSON.parse(atob(pj));
+      if (!pj?.[funName[0]]?.component) return false;
+      let returnJson = {
+        read: [],
+        write: [],
+      };
+      funName.map((sname) => {
+        let data = pj[sname];
+        if (!data) {
+          return false;
         }
-        if (
-          data?.component[val].permission.write ||
-          data.component[val].permission.update ||
-          data.component[val].permission.delete
-        ) {
-          returnJson.write.push(val);
-        }
-        let compt = data.component[val].component;
-        let json = Permissions.getAllComponentData(compt);
-        returnJson = {
-          read: [...returnJson.read, ...json.read],
-          write: [...returnJson.write, ...json.write],
-        };
+        Object.keys(data?.component).map((val) => {
+          if (data?.component[val].permission.read) {
+            returnJson.read.push(val);
+          }
+          if (
+            data?.component[val].permission.write ||
+            data.component[val].permission.update ||
+            data.component[val].permission.delete
+          ) {
+            returnJson.write.push(val);
+          }
+          let compt = data.component[val].component;
+          let json = Permissions.getAllComponentData(compt);
+          returnJson = {
+            read: [...returnJson.read, ...json.read],
+            write: [...returnJson.write, ...json.write],
+          };
+        });
       });
-    });
 
-    return returnJson;
+      return returnJson;
+    } catch (e) {
+      return {
+        read: [],
+        write: []
+      }
+    }
   },
   getAllComponentData: (compt) => {
     let returnJson = {
