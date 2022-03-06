@@ -102,7 +102,6 @@ const Permissions = {
     sessionStorage.setItem("role_data", btoa(JSON.stringify(permission)));
   },
   checkWithCasbin: async (funName = []) => {
-
     try {
       let permission = Permissions.permissionJson(funName);
       if (permission) {
