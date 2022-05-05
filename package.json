@@ -21,6 +21,7 @@
     "custom-material-ui-component": "0.0.25",
     "date-fns": "^2.15.0",
     "dotenv": "^8.2.0",
+    "form-configurator": "^1.0.84",
     "graphql": "^15.1.0",
     "i18next": "^13.1.5",
     "i18next-browser-languagedetector": "^2.2.4",
