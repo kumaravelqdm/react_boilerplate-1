@@ -9,33 +9,37 @@
 import React from "react";
 import { BorderLinearProgress } from "qdm-component-library";
 import { NetworkCall } from "./networkcall";
+import { initialMessageCatlog } from "atp-multilingual";
 
 class AppAuth extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { };
+    this.state = {
+      intialLoad: true
+    };
   }
 
-  componentDidMount(){
-    NetworkCall('meta.json','GET',null,null,false,true).then((_)=>{
-      localStorage.setItem('version',_.data.version)
-    }).catch(err=>{
+  async componentDidMount() {
+    NetworkCall('meta.json', 'GET', null, null, false, true).then((_) => {
+      localStorage.setItem('version', _.data.version)
+    }).catch(err => {
       console.log('err:', err);
     })
+    await initialMessageCatlog("METADATA_ID");
+    this.setState({ intialLoad: false })
   }
 
   render() {
 
-    let {
-      loading
-    } = this.props;
+    let { loading } = this.props;
+    let { intialLoad } = this.state;
 
     return (
-      <>       
-        {loading && (
-          <BorderLinearProgress/>
+      <>
+        {(loading || intialLoad) && (
+          <BorderLinearProgress />
         )}
-        {this.props.children}
+        {!intialLoad && this.props.children}
       </>
     );
   }
